@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue Aug 14 12:15:59 2018
-Scrape a CAL FIRE pdf for historical fire data
+Scrape a CAL FIRE pdf for historical fire incidents data
 @author: JFSARACENO@GMAIL.COM
 """
 
@@ -43,7 +43,7 @@ if __name__ == '__main__':
     fire_stats_url = 'http://cdfdata.fire.ca.gov/pub/cdf/images/incidentstatsevents_270.pdf'
     # OR if no web connection use:    data/incidentstatsevents_270.pdf
     #path to output data file
-    fire_stats_csv = 'data/ca-fires.csv'
+    fire_stats_csv = 'data/ca-fire-incidents.csv'
     #join both  dataframes that represent each page
     df_fires = pd.concat([clean_fire_df(tabula.read_pdf(fire_stats_url,
                                                         pages=[1])),    
