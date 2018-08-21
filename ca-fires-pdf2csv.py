@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue Aug 14 12:15:59 2018
-Compile some data about CA fires
+Scrape a CAL FIRE pdf for histroical fire data
 @author: JFSARACENO@GMAIL.COM
 """
 
@@ -26,10 +26,9 @@ def clean_fire_df(df):
             # remove the asterisks from years and convert strings to an integer
             df2.index = [int(s.replace("*", "")) for s in df2.index.tolist()]
             # convert the index to a datetimeindex
-            date_format = "%Y"
-            df2.index = pd.to_datetime(df2.index, format=date_format)
+            df2.index = pd.to_datetime(df2.index, format='%Y')
             df2.index.name = index_name
-# remove commas to convert text values to floats, column wise
+            # remove commas to convert text values to floats, column wise
             for column in df2.columns:
                 df2[column] = df2[column].apply(lambda x: float(
                                                 x.split()[0].replace(',', '')))        
@@ -40,8 +39,10 @@ def clean_fire_df(df):
 
 
 if __name__ == '__main__':
-
+    #path to input file
     fire_stats_url = 'http://cdfdata.fire.ca.gov/pub/cdf/images/incidentstatsevents_270.pdf'
+    # OR if no web connection use:    data/incidentstatsevents_270.pdf
+    #path to output data file
     fire_stats_csv = 'data/ca-fires.csv'
     #join both  dataframes that represent each page
     df_fires = pd.concat([clean_fire_df(tabula.read_pdf(fire_stats_url,
