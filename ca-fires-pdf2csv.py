@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue Aug 14 12:15:59 2018
-Scrape a CAL FIRE pdf for histroical fire data
+Scrape a CAL FIRE pdf for historical fire data
 @author: JFSARACENO@GMAIL.COM
 """
 
